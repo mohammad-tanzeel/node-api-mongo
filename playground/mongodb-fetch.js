@@ -32,5 +32,11 @@ MongoClient.connect('mongodb://localhost:27017/MyNewDatabase',(err, db) =>{
     db.collection('Todos').find({text:'Tanzeel'}).toArray().then((docs) => {
         console.log(JSON.stringify(docs, undefined,2));
     });
+    
+    var MyModel = mongoose.model('Todos', new Schema({ name: String }));
+// Will just hang until mongoose successfully connects
+MyModel.findOne(function(error, result) { /* ... */ });
+
+
     db.close();
 });  
